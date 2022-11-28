@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+<div class="container-fluid"  style="height:100vh ; background-image: rgb(198, 242, 255);">
+  <% tesla = Tesla.find(params[:id]) %>
+      <h1><%= tesla.model %></h1>
+ <div class="row" style="margin-top: 100px;">
+      <div class="col-6 ">
+          <img src="<%= tesla.image_url %>"
+          style="
+          float: left;
+          display: block;
+          text-align: left;
+          margin-left: auto;
+          margin-right: 15px;
+          width: 40vw;;
+          height:40vh;"
+          alt="<%= tesla.model %>">
+      </div>
+   <div class="col-6 ">
+     <p class="card-text"><%= tesla.description %></p>
+        <p class="card-text">$<%= tesla.price %></p>
+         <p class="card-text">In Stock: <%= tesla.instock %> </p>
+
+          <h2>Reviews</h2>
+          <% users = tesla.users.uniq %>
+          <% users.each do |user| %>
+
+         <h5><%= user.name %></h5>
+         <p><%= user.comment %></p>
+         <% end %>
+    </div>
+  </div>
+</div>
+    
+</body>
+</html>
+
+
+ 
